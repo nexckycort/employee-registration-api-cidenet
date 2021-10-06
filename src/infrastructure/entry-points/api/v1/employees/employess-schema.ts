@@ -8,6 +8,11 @@ const namesValidation = Validator.string()
 
 const numberValidation = Validator.number().min(1).required()
 
+const dateDifferenceMonth = () => {
+  const currentDate = new Date()
+  return new Date().setMonth(currentDate.getMonth() - 1)
+}
+
 const createOrUpdateSchema = Validator.object().keys({
   firstSurname: namesValidation.required(),
   secondSurname: namesValidation.required(),
@@ -16,8 +21,7 @@ const createOrUpdateSchema = Validator.object().keys({
   country: numberValidation,
   IDType: numberValidation,
   identificationNumber: Validator.string().alphanum().min(6).max(20).required(),
-  // TODO: no puede ser superior a la fecha actual y menor hasta un mes
-  entryDate: Validator.date().iso().required(),
+  entryDate: Validator.date().iso().min(dateDifferenceMonth()).max('now').required(),
   area: numberValidation
 })
 

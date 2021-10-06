@@ -257,7 +257,8 @@ CREATE TABLE public.employees (
     entry_date timestamp without time zone DEFAULT now() NOT NULL,
     area integer NOT NULL,
     state character(1) DEFAULT 'A'::bpchar NOT NULL,
-    registration_date timestamp without time zone DEFAULT now() NOT NULL
+    registration_date timestamp without time zone DEFAULT now() NOT NULL,
+    update_date timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -555,7 +556,7 @@ COPY public.countrys (id, name) FROM stdin;
 -- Data for Name: employees; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-COPY public.employees (id, first_surname, second_surname, first_name, second_name, country, id_type, identification_number, email, entry_date, area, state, registration_date) FROM stdin;
+COPY public.employees (id, first_surname, second_surname, first_name, second_name, country, id_type, identification_number, email, entry_date, area, state, registration_date, update_date) FROM stdin;
 \.
 
 
@@ -591,6 +592,7 @@ COPY public.roles (id, rol) FROM stdin;
 --
 
 COPY public.sessions (id, user_id, token, expired) FROM stdin;
+7	1	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjMzNDgzNzY0fQ.SBKVgMxQb5TIqN53Kj3K8AfjvJd18F_OfosYDyC0_f4	2021-10-06 01:44:25
 \.
 
 
@@ -621,7 +623,7 @@ SELECT pg_catalog.setval('public.countrys_id_seq', 2, true);
 -- Name: employees_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.employees_id_seq', 15, true);
+SELECT pg_catalog.setval('public.employees_id_seq', 43, true);
 
 
 --
@@ -649,7 +651,7 @@ SELECT pg_catalog.setval('public.roles_id_seq', 1, true);
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 6, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 7, true);
 
 
 --

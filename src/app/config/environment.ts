@@ -12,7 +12,8 @@ Object.freeze(api)
 
 export const pg = {
   uri: process.env.PG_URI ?? '',
-  dbName: process.env.PG_DATABASE ?? ''
+  dbName: process.env.PG_DATABASE ?? '',
+  ssl: process.env.PG_SSL !== 'false'
 }
 Object.freeze(pg)
 

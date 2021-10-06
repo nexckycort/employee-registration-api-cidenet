@@ -10,11 +10,12 @@ interface Querys {
 }
 
 export const PgHelper = {
-  async connect(uri: string, dbName: string): Promise<void> {
+  async connect(uri: string, dbName: string, ssl = false): Promise<void> {
     const poolConfig: PoolConfig = {
       connectionString: uri,
       idleTimeoutMillis: 40000,
-      max: 2
+      max: 2,
+      ssl
     }
     db = new Pool(poolConfig)
     Logger.info('Connection to the database has been established successfully! ✌️')

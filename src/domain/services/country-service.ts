@@ -8,4 +8,9 @@ export class CountryService implements ICountryService {
     const countryRecord = await this.countryRepository.findByPk(country)
     return countryRecord !== undefined
   }
+
+  async findAll() {
+    const countryRecords = await this.countryRepository.find()
+    return countryRecords
+  }
 }

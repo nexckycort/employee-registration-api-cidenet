@@ -10,8 +10,8 @@ export class EmployeeRepository extends BaseRepository<Employee> {
     const newPage = page === 1 ? 0 : page - 1
 
     const { rows } = await this.db.query<EmployeeRecord>(`select e.id, concat(e.first_name, ' ', e.second_name, ' ', e.first_surname, ' ', e.second_surname) as name, 
-      c."name" as country, it."name" as id_type, identification_number, email, entry_date, a."name" as area, 
-      state, registration_date
+      c."name" as country, it."name" as "IDType", identification_number "identificationNumber", email, entry_date "entryDate", a."name" as area, 
+      state, registration_date "registrationDate"
       from employees e
       inner join countrys c on e.country = c.id
       inner join id_types it on e.id_type = it.id

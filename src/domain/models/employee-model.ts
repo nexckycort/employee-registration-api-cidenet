@@ -15,25 +15,27 @@ export interface NewEmployee {
 
 export interface EmployeeRecord {
   id: number
-  first_surname: string
-  second_surname: string
-  first_name: string
-  second_name?: any
+  firstSurname: string
+  secondSurname: string
+  firstName: string
+  secondName?: string | null
   country: number
-  id_type: number
-  identification_number: string
-  email: string
-  entry_date: string
+  IDType: number
+  identificationNumber: string
   area: number
+  entryDate: string
+  email: string
   state: string
-  registration_date: string
+  registrationDate: string
+  updateDate: string
 }
 
 export class Employee {
   readonly id!: number
   readonly state!: string
+  email!: string
   readonly registration_date!: Date
-  private email!: string
+  readonly update_date!: Date
   constructor(
     readonly first_surname: string,
     readonly second_surname: string,
@@ -47,8 +49,7 @@ export class Employee {
     private readonly employeeRepository = new EmployeeRepository()
   ) {
     this.second_name = second_name ?? null
-    this.state = 'A'
-    this.registration_date = new Date()
+    this.update_date = new Date()
   }
 
   generateEmail = async () => {
@@ -60,7 +61,12 @@ export class Employee {
 
     const email = `${nameEmail}${numberEmail}@${emailDomain}`
     this.email = email
+    this.cleanObj()
+  }
+
+  cleanObj = () => {
     Reflect.deleteProperty(this, 'employeeRepository')
     Reflect.deleteProperty(this, 'generateEmail')
+    Reflect.deleteProperty(this, 'cleanObj')
   }
 }

@@ -1,11 +1,12 @@
 import { Router } from 'express'
 
 import { AdaptRoute } from 'app/adapters/express-route-adapter'
-import { makeCreateEmployessController, makeGetPaginatedEmployeesController } from 'app/factories/employees'
+import { makeCreateEmployessController, makeGetPaginatedEmployeesController, makeUpdateEmployessController } from 'app/factories/employees'
 import { AdaptRouteMiddleware } from 'app/adapters/express-middleware-adapter'
-import { validateCreateSchema, validateGetPaginatedSchema } from './employess-schema'
+import { validateCreateOrUpdateSchema, validateGetPaginatedSchema } from './employess-schema'
 
 export const employeesRoutes = Router()
 
-employeesRoutes.post('/', ...AdaptRouteMiddleware(validateCreateSchema), AdaptRoute(makeCreateEmployessController()))
+employeesRoutes.post('/', ...AdaptRouteMiddleware(validateCreateOrUpdateSchema), AdaptRoute(makeCreateEmployessController()))
 employeesRoutes.get('/', ...AdaptRouteMiddleware(validateGetPaginatedSchema), AdaptRoute(makeGetPaginatedEmployeesController()))
+employeesRoutes.put('/:id', ...AdaptRouteMiddleware(validateCreateOrUpdateSchema), AdaptRoute(makeUpdateEmployessController()))

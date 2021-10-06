@@ -16,6 +16,7 @@ export class EmployeeRepository extends BaseRepository<Employee> {
       inner join countrys c on e.country = c.id
       inner join id_types it on e.id_type = it.id
       inner join areas a on e.area = a.id
+      where e.state = 'A'
       order by e.id
       limit ${limit} offset (${newPage} * ${limit})`)
     return rows

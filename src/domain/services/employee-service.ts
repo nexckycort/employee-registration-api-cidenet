@@ -62,8 +62,14 @@ export class EmployeeService implements IEmployeeService {
   }
 
   findByPk = async (id: number) => {
-    const employeeRecord = await this.employeeRepository.findByPk(id)
-    return employeeRecord
+    const employeeRecord = await this.employeeRepository.findOne({
+      where: {
+        id,
+        state: 'A'
+      }
+    })
+    if (employeeRecord === undefined) return
+    return this.snakeCaseEmployeeToCamelCase(employeeRecord)
   }
 
   update = async (id: number, newEmployee: NewEmployee) => {
@@ -75,7 +81,7 @@ export class EmployeeService implements IEmployeeService {
     const entryDateObj = new Date(entryDate)
     const employee = new Employee(firstSurname, secondSurname, firstName, country, IDType, identificationNumber, entryDateObj, area, secondName)
 
-    const oldName = `${alreadyExists.first_name}.${alreadyExists.first_surname}`
+    const oldName = `${alreadyExists.firstName}.${alreadyExists.firstSurname}`
     const newName = `${firstName}.${firstSurname}`
     if (oldName === newName) employee.cleanObj()
     else await employee.generateEmail()
@@ -89,5 +95,19 @@ export class EmployeeService implements IEmployeeService {
 
     const result = this.snakeCaseEmployeeToCamelCase(employeeRecord)
     return result
+  }
+
+  delete = async (id: number) => {
+    const employeeRecord = await this.employeeRepository.update({
+      o: {
+        state: 'I'
+      },
+      where: {
+        id,
+        state: 'A'
+      }
+    })
+    if (employeeRecord === undefined) return null
+    return { id: employeeRecord.id }
   }
 }

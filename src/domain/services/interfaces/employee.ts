@@ -11,6 +11,7 @@ export interface IEmployeeService {
     totalItems: unknown
     items: EmployeeRecord[]
   }>
-  findByPk: (id: number) => Promise<Employee>
+  findByPk: (id: number) => Promise<EmployeeRecord | undefined>
   update: (id: number, newEmployee: NewEmployee) => Promise<EmployeeRecord | null>
+  delete: (id: number) => Promise<{ id: number } | null>
 }

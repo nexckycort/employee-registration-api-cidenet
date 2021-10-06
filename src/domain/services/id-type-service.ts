@@ -8,4 +8,9 @@ export class IdTypeService implements IIdTypeService {
     const countryRecord = await this.idTypesRepository.findByPk(idType)
     return countryRecord !== undefined
   }
+
+  async findAll() {
+    const idTypeRecords = await this.idTypesRepository.find()
+    return idTypeRecords
+  }
 }

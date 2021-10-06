@@ -141,3 +141,8 @@ export const max = (table: string, column: string): string => {
   return `select max(${column}) ${column}
   from ${table}`
 }
+
+export const count = (table: string): string => {
+  return `select count(1)
+  from ${table}`
+}

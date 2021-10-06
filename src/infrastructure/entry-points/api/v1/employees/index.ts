@@ -1,2 +1,2 @@
-export { EmployeesController } from './employees-controller'
+export { CreateEmployeesController } from './employees-controller'
 export { employeesRoutes } from './employees-routes'

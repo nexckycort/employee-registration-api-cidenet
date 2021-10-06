@@ -39,4 +39,10 @@ export abstract class BaseRepository<T> implements Write<T>, Read<T> {
     const { rows } = await this.db.query(q)
     return rows[0] as T
   }
+
+  async count(): Promise<number> {
+    const q = querys.count(this.tableName)
+    const { rows } = await this.db.query<{ count: number }>(q)
+    return +rows[0].count
+  }
 }

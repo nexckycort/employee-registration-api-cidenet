@@ -1,5 +1,5 @@
 import { Validator } from 'infrastructure/lib/validator'
-import validator from '../../middlewares/validator'
+import validator, { ValidationSource } from '../../middlewares/validator'
 
 const namesValidation = Validator.string()
   .min(3)
@@ -8,7 +8,7 @@ const namesValidation = Validator.string()
 
 const numberValidation = Validator.number().min(1).required()
 
-const employeeSchema = Validator.object().keys({
+const createSchema = Validator.object().keys({
   firstSurname: namesValidation.required(),
   secondSurname: namesValidation.required(),
   firstName: namesValidation.required(),
@@ -20,4 +20,10 @@ const employeeSchema = Validator.object().keys({
   area: numberValidation
 })
 
-export const validateSchema = validator(employeeSchema)
+const getPaginatedSchema = Validator.object().keys({
+  page: Validator.number().min(1).required(),
+  limit: Validator.number().min(1).required()
+})
+
+export const validateCreateSchema = validator(createSchema)
+export const validateGetPaginatedSchema = validator(getPaginatedSchema, ValidationSource.QUERY)

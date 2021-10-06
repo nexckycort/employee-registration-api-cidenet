@@ -13,6 +13,22 @@ export interface NewEmployee {
   entryDate: string
 }
 
+export interface EmployeeRecord {
+  id: number
+  first_surname: string
+  second_surname: string
+  first_name: string
+  second_name?: any
+  country: number
+  id_type: number
+  identification_number: string
+  email: string
+  entry_date: string
+  area: number
+  state: string
+  registration_date: string
+}
+
 export class Employee {
   readonly id!: number
   readonly state!: string

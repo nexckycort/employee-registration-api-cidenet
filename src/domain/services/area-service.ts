@@ -8,4 +8,9 @@ export class AreaService implements IAreaService {
     const areaRecord = await this.areaRepository.findByPk(area)
     return areaRecord !== undefined
   }
+
+  async findAll() {
+    const areaRecords = await this.areaRepository.find()
+    return areaRecords
+  }
 }

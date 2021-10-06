@@ -8,13 +8,13 @@ import { FindOptions, UpdateOptions } from './helpers/querys/querys.interfaces'
 export abstract class BaseRepository<T> implements Write<T>, Read<T> {
   constructor(private readonly tableName: string, readonly db = PgHelper.connection()) {}
 
-  async create(item: T): Promise<T> {
+  async create(item: T) {
     const q = querys.buildInsert(item, this.tableName)
     const { rows } = await this.db.query(q)
     return rows[0] as T
   }
 
-  async update(options: UpdateOptions): Promise<T> {
+  async update(options: UpdateOptions) {
     const q = querys.buildUpdate(options, this.tableName)
     const { rows } = await this.db.query(q)
     return rows[0] as T
@@ -24,23 +24,25 @@ export abstract class BaseRepository<T> implements Write<T>, Read<T> {
     throw new Error('not')
   }
 
-  async find(data: any): Promise<T[]> {
-    throw new Error('not')
+  async find(options?: FindOptions) {
+    const q = querys.buildSelect(options, this.tableName)
+    const { rows } = await this.db.query(q)
+    return rows as T[]
   }
 
-  async findOne(options: FindOptions): Promise<T> {
+  async findOne(options: FindOptions) {
     const q = querys.buildSelect(options, this.tableName)
     const { rows } = await this.db.query(q)
     return rows[0] as T
   }
 
-  async findByPk(identifier: number | string, options?: { attributes: string[] }): Promise<T> {
+  async findByPk(identifier: number | string, options?: { attributes: string[] }) {
     const q = querys.findByPk(identifier, this.tableName, options)
     const { rows } = await this.db.query(q)
     return rows[0] as T
   }
 
-  async count(): Promise<number> {
+  async count() {
     const q = querys.count(this.tableName)
     const { rows } = await this.db.query<{ count: number }>(q)
     return +rows[0].count

@@ -1,7 +1,7 @@
-import { Employee, EmployeeRecord, NewEmployee } from 'domain/models/employee-model'
+import { EmployeeRecord, NewEmployee } from 'domain/models/employee-model'
 
 export interface IEmployeeService {
-  create: (newEmployee: NewEmployee) => Promise<Employee>
+  create: (newEmployee: NewEmployee) => Promise<EmployeeRecord>
   getPaginated: (
     page: number,
     limit: number

@@ -33,7 +33,7 @@ export class EmployeeService implements IEmployeeService {
     await employee.generateEmail()
 
     const employeeRecord = await this.employeeRepository.create(employee)
-    return employeeRecord
+    return this.snakeCaseEmployeeToCamelCase(employeeRecord)
   }
 
   getPaginated = async (page: number, limit: number) => {

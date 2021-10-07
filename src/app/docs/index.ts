@@ -9,6 +9,9 @@ import { loginSchema } from './schemas/login/login-schema'
 import { errorSchema } from './schemas/error/error-schema'
 import { validateTokenPath } from './validate-token-path'
 import { validateTokenSchema } from './schemas/validate-token/validate-token-schema'
+import { employeeSchema, employeesPaginatedSchema } from './schemas/employee/employee-schema'
+import { employeeParamsSchema } from './schemas/employee/employee-params-schema'
+import { employeePath, employeeUpdatePath } from './employee-path'
 
 export default {
   openapi: '3.0.0',
@@ -26,7 +29,9 @@ export default {
   paths: {
     '/signup': signupPath, // route
     '/login': loginPath, // route
-    '/validate-token': validateTokenPath // route
+    '/validate-token': validateTokenPath, // route
+    '/employees': employeePath, // route
+    '/employees/{employeeId}': employeeUpdatePath // route
   },
   schemas: {
     signup: signupSchema, // response
@@ -36,6 +41,11 @@ export default {
     loginParams: loginParamsSchema, // request
 
     validateToken: validateTokenSchema, // response
+
+    employee: employeeSchema, // response
+    employeeParams: employeeParamsSchema, // request
+
+    employeesPaginated: employeesPaginatedSchema, // response
 
     error: errorSchema
   },

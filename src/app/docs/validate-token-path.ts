@@ -1,23 +1,23 @@
-export const loginPath = {
-  post: {
+export const validateTokenPath = {
+  get: {
     tags: ['Login'],
-    summary: 'endpoint to login',
-    requestBody: {
-      content: {
-        'application/json': {
-          schema: {
-            $ref: '#/schemas/loginParams'
-          }
-        }
+    summary: 'endpoint to validate token',
+    parameters: [
+      {
+        in: 'header',
+        name: 'Authorization',
+        description: 'token',
+        required: true,
+        type: 'string'
       }
-    },
+    ],
     responses: {
       200: {
         description: 'Success',
         content: {
           'application/json': {
             schema: {
-              $ref: '#/schemas/login'
+              $ref: '#/schemas/validateToken'
             }
           }
         }

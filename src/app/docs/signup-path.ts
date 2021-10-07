@@ -1,7 +1,7 @@
 export const signupPath = {
   post: {
-    tags: ['Signup'],
-    summary: 'API to register new user',
+    tags: ['Login'],
+    summary: 'endpoint to register new user',
     requestBody: {
       content: {
         'application/json': {

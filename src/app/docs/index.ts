@@ -12,6 +12,8 @@ import { validateTokenSchema } from './schemas/validate-token/validate-token-sch
 import { employeeSchema, employeesPaginatedSchema } from './schemas/employee/employee-schema'
 import { employeeParamsSchema } from './schemas/employee/employee-params-schema'
 import { employeePath, employeeUpdatePath } from './employee-path'
+import { areaCountryIdtypeSchema } from './schemas/area-country-idtype/area-country-idtype-schema'
+import { areaCountryIdtypePath } from './area-country-idtype-path'
 
 export default {
   openapi: '3.0.0',
@@ -25,13 +27,16 @@ export default {
       url: api.prefixV1
     }
   ],
-  tags: [{ name: 'Login' }, { name: 'Employee' }],
+  tags: [{ name: 'Login' }, { name: 'Employee' }, { name: 'Others' }],
   paths: {
     '/signup': signupPath, // route
     '/login': loginPath, // route
     '/validate-token': validateTokenPath, // route
     '/employees': employeePath, // route
-    '/employees/{employeeId}': employeeUpdatePath // route
+    '/employees/{employeeId}': employeeUpdatePath, // route
+    '/areas': areaCountryIdtypePath, // route
+    '/countrys': areaCountryIdtypePath, // route
+    '/id-types': areaCountryIdtypePath // route
   },
   schemas: {
     signup: signupSchema, // response
@@ -46,6 +51,8 @@ export default {
     employeeParams: employeeParamsSchema, // request
 
     employeesPaginated: employeesPaginatedSchema, // response
+
+    areaCountryIdtype: areaCountryIdtypeSchema, // response
 
     error: errorSchema
   },

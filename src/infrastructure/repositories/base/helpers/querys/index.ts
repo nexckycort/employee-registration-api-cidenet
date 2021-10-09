@@ -142,7 +142,13 @@ export const max = (table: string, column: string): string => {
   from ${table}`
 }
 
-export const count = (table: string): string => {
+export const count = (table: string, where?: any): string => {
+  let whereBuilt = ''
+  if (where !== undefined) {
+    whereBuilt = buildWhereSelectOrDelete(where)
+    whereBuilt = whereBuilt.slice(0, whereBuilt.length - 4)
+  }
   return `select count(1)
-  from ${table}`
+  from ${table}
+  ${whereBuilt}`
 }

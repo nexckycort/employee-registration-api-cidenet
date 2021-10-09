@@ -8,7 +8,7 @@ export class EmployeeService implements IEmployeeService {
   private readonly snakeCaseEmployeeToCamelCase = (employee: Employee) => {
     const result = {
       id: employee.id,
-      firstSurname: employee.first_name,
+      firstSurname: employee.first_surname,
       secondSurname: employee.second_surname,
       firstName: employee.first_name,
       secondName: employee.second_name,
@@ -39,7 +39,7 @@ export class EmployeeService implements IEmployeeService {
   getPaginated = async (page: number, limit: number) => {
     const consult = []
 
-    consult.push(this.employeeRepository.count())
+    consult.push(this.employeeRepository.count({ state: 'A' }))
     consult.push(this.employeeRepository.getPaginated(page, limit))
 
     const [countEmployeesRecord, employeeRecords]: any = await Promise.all(consult as any)

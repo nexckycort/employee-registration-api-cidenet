@@ -13,8 +13,9 @@ Object.freeze(api)
 export const pg = {
   uri: process.env.PG_URI ?? '',
   dbName: process.env.PG_DATABASE ?? '',
-  ssl: process.env.PG_SSL !== 'false'
+  ssl: process.env.PG_SSL === 'true'
 }
+console.log(pg)
 Object.freeze(pg)
 
 export const emailDomain = process.env.EMAIL_DOMAIN ?? ''

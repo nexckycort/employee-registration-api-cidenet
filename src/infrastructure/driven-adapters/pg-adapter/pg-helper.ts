@@ -15,7 +15,9 @@ export const PgHelper = {
       connectionString: uri,
       idleTimeoutMillis: 40000,
       max: 2,
-      ssl
+      ssl: {
+        rejectUnauthorized: ssl
+      }
     }
     db = new Pool(poolConfig)
     Logger.info('Connection to the database has been established successfully! ✌️')

@@ -4,5 +4,5 @@ export interface Read<T> {
   find: (options?: FindOptions) => Promise<T[]>
   findByPk: (identifier: number | string, options?: { attributes: string[] }) => Promise<T>
   findOne: (options: FindOptions) => Promise<T>
-  count: () => Promise<number>
+  count: (where?: any) => Promise<number>
 }

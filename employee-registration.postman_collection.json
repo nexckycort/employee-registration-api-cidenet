@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstSurname\": \"Cortina\",\r\n    \"secondSurname\": \"Rivera\",\r\n    \"firstName\": \"Nestor\",\r\n    \"secondName\": null,\r\n    \"country\": 1,\r\n    \"IDType\": 1,\r\n    \"identificationNumber\": \"1143271190\",\r\n    \"entryDate\": \"2021-09-07\",\r\n    \"area\": 1\r\n}",
+					"raw": "{\r\n    \"firstSurname\": \"Cortina\",\r\n    \"secondSurname\": \"Rivera\",\r\n    \"firstName\": \"Nestor\",\r\n    \"secondName\": null,\r\n    \"country\": 1,\r\n    \"IDType\": 1,\r\n    \"identificationNumber\": \"21232371190\",\r\n    \"entryDate\": \"2021-09-08\",\r\n    \"area\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -230,13 +230,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{route}}/api/v1.0/areas",
+					"raw": "{{route}}/areas",
 					"host": [
 						"{{route}}"
 					],
 					"path": [
-						"api",
-						"v1.0",
 						"areas"
 					]
 				}

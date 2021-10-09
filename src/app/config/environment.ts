@@ -15,7 +15,6 @@ export const pg = {
   dbName: process.env.PG_DATABASE ?? '',
   ssl: process.env.PG_SSL === 'true'
 }
-console.log(pg)
 Object.freeze(pg)
 
 export const emailDomain = process.env.EMAIL_DOMAIN ?? ''

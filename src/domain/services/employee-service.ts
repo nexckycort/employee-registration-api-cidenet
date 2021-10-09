@@ -110,4 +110,13 @@ export class EmployeeService implements IEmployeeService {
     if (employeeRecord === undefined) return null
     return { id: employeeRecord.id }
   }
+
+  validateIdNumber = async (idNumber: string) => {
+    const employeeRecord = this.employeeRepository.findOne({
+      where: {
+        identification_number: idNumber
+      }
+    })
+    return employeeRecord === undefined
+  }
 }

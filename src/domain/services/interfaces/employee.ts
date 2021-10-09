@@ -14,4 +14,5 @@ export interface IEmployeeService {
   findByPk: (id: number) => Promise<EmployeeRecord | undefined>
   update: (id: number, newEmployee: NewEmployee) => Promise<EmployeeRecord | null>
   delete: (id: number) => Promise<{ id: number } | null>
+  validateIdNumber: (idNumber: string) => Promise<boolean>
 }

@@ -13,6 +13,7 @@ services:
       PREFIX_API: /api/v1.0
       PG_URI: postgres://root:root@localhost:5432/cidenet
       PG_DATABASE: cidenet
+      PG_SSL: true
       EMAIL_DOMAIN: cidenet.com.co
       RIJNDAEL_KEY: cidenet
       SEED: sdfgsdffgsf

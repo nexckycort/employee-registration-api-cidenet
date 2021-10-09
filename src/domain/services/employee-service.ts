@@ -112,7 +112,7 @@ export class EmployeeService implements IEmployeeService {
   }
 
   validateIdNumber = async (idNumber: string) => {
-    const employeeRecord = this.employeeRepository.findOne({
+    const employeeRecord = await this.employeeRepository.findOne({
       where: {
         identification_number: idNumber
       }

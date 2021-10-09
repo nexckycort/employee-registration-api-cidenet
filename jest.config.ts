@@ -14,11 +14,17 @@ Object.assign(
   }))
 )
 
+const typeTest = process.env.TEST ?? 'unit'
+const roots: any = {
+  unit: ['<rootDir>/src'],
+  e2e: ['<rootDir>/tests']
+}
+
 const config: Config.InitialOptions = {
   clearMocks: true,
   preset: 'ts-jest',
   testEnvironment: 'node',
-  roots: ['<rootDir>/src'],
+  roots: roots[typeTest],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!**/node_modules/**'],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
